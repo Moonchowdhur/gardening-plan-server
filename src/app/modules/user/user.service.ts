@@ -150,6 +150,17 @@ const updateUserIntoDB = async (
   return updatedUser;
 };
 
+const paymentupdateUserIntoDB = async (userEmail: string) => {
+  const updatedUser = await User.findOneAndUpdate(
+    { email: userEmail },
+    { verified: true, payment: true },
+    {
+      new: true,
+    },
+  );
+  return updatedUser;
+};
+
 export const UserServices = {
   createUserIntoDB,
   getSingleUser,
@@ -158,4 +169,5 @@ export const UserServices = {
   followUser,
   getAllUserFromDb,
   updateUserIntoDB,
+  paymentupdateUserIntoDB,
 };

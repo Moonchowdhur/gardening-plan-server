@@ -144,10 +144,32 @@ const followOrUnfollowUser = catchAsync(async (req, res) => {
   });
 });
 
+const paymentUser = catchAsync(async (req, res) => {
+  const { email } = req.params;
+
+  const result = await UserServices.paymentupdateUserIntoDB(email);
+
+  if (!result) {
+    return sendResponse(res, {
+      statusCode: 400,
+      sucess: false,
+      message: 'User not found',
+      data: null,
+    });
+  }
+  sendResponse(res, {
+    statusCode: 200,
+    sucess: true,
+    message: 'payment successfull',
+    data: result,
+  });
+});
+
 export const UserControllers = {
   createUser,
   getSingleUserByEmail,
   updateUser,
   followOrUnfollowUser,
   getAllUser,
+  paymentUser,
 };

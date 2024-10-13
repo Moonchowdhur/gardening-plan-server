@@ -50,6 +50,12 @@ router.put(
   UserControllers.updateUser,
 );
 
+router.put(
+  '/payment/:email',
+
+  UserControllers.paymentUser,
+);
+
 router.post(
   '/:action/:userId/:targetUserId',
   UserControllers.followOrUnfollowUser,
